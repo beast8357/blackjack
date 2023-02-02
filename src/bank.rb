@@ -1,15 +1,15 @@
 class Bank
-  attr_accessor :deposit
+  attr_accessor :money
 
   def initialize
-    @deposit = 100
+    @money = 100
   end
 
   def deduct
-    self.deposit -= 10 if deposit >= 10
+    self.money -= 10 if money >= 10
   end
 
-  def receive(money)
-    self.deposit += money
+  def receive(amount)
+    self.money += amount
   end
 end

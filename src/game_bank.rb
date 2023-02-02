@@ -1,16 +1,19 @@
 class GameBank
-  attr_accessor :deposit
+  attr_accessor :money
 
   def initialize
-    @deposit = 0
+    @money = 0
   end
 
   def take_bet
-    self.deposit += 10
+    self.money += 10
   end
 
-  def transfer(player)
-    player.bank_account.receive(deposit)
-    self.deposit = 0
+  def transfer(player, amount)
+    player.bank_account.receive(amount)
+  end
+
+  def clear
+    self.money = 0
   end
 end
