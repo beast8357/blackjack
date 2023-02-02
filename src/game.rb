@@ -7,7 +7,8 @@ require_relative 'greeter'
 require_relative 'judge'
 
 class Game
-  attr_accessor :moves, :bank_account, :deck, :player, :dealer, :p_score, :d_score, :flag
+  attr_accessor :moves, :bank_account, :deck, :player, :dealer,
+                :player_score, :dealer_score, :flag
 
   def initialize
     @moves = Moves.list
@@ -15,8 +16,8 @@ class Game
     @deck = Deck.generate
     @player = Player.new
     @dealer = Dealer.new
-    @p_score = ScoreCounter.new
-    @d_score = ScoreCounter.new
+    @player_score = ScoreCounter.new
+    @dealer_score = ScoreCounter.new
     @flag = false
   end
 
@@ -34,8 +35,8 @@ class Game
   def initiate
     player.take_starting_cards
     dealer.take_starting_cards
-    player.score = p_score.calculate(player.cards)
-    dealer.score = d_score.calculate(dealer.cards)
+    player.score = player_score.calculate(player.cards)
+    dealer.score = dealer_score.calculate(dealer.cards)
     player.stats
     dealer.encrypted_stats
   end
@@ -125,8 +126,8 @@ class Game
   end
 
   def calc_players_scores
-    player.score = p_score.calculate(player.cards)
-    dealer.score = d_score.calculate(dealer.cards)
+    player.score = player_score.calculate(player.cards)
+    dealer.score = dealer_score.calculate(dealer.cards)
   end
 end
 
