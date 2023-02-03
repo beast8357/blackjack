@@ -12,19 +12,15 @@ class Dealer
 
   def take_starting_cards(deck)
     cards.clear
-    until cards.count == 2
-      pick_card(deck)
-    end
-    @score = ScoreCounter.score(cards)
+    pick_card(deck) until cards.count == 2
+    @score = ScoreCounter.count(cards)
   end
 
   def take_extra_card(deck)
     if cards.count == 2
-      until cards.count == 3
-        pick_card(deck)
-      end
+      pick_card(deck) until cards.count == 3
     end
-    @score = ScoreCounter.score(cards)
+    @score = ScoreCounter.count(cards)
   end
 
   def encrypt(object)

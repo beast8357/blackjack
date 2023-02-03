@@ -5,7 +5,7 @@ class ScoreCounter
     attr_reader :points
   end
 
-  def self.score(cards)
+  def self.count(cards)
     @points = 0
     cards.each { |card| calculate(card) }
     points
@@ -19,7 +19,7 @@ class ScoreCounter
     elsif card.chr.to_i == 1 || card.chr == 'Q' || card.chr == 'K' || card.chr == 'J'
       @points += 10
     elsif card.chr == 'A'
-      @points += ace_points(self.points)
+      @points += ace_points(points)
     end
   end
 
