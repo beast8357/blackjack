@@ -1,5 +1,5 @@
 class Moves
-  def self.list
+  def self.moves
     [
       { option: 'Skip turn', action: :skip_turn },
       { option: 'Take an extra card', action: :take_extra_card },
