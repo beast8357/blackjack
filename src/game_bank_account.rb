@@ -1,32 +1,32 @@
 class GameBankAccount
-  attr_reader :player_money, :dealer_money
+  attr_reader :player_bet, :dealer_bet
 
   def initialize
-    @player_money = 0
-    @dealer_money = 0
+    @player_bet = 0
+    @dealer_bet = 0
   end
 
-  def take_bet(person, amount)
+  def take_bet(person, bet_amount)
     if person.is_a? Player
-      @player_money += amount
+      @player_bet += bet_amount
     elsif person.is_a? Dealer
-      @dealer_money += amount
+      @dealer_bet += bet_amount
     end
   end
 
   def transfer(bank_account, amount)
     bank_account.receive(amount)
-    @player_money = 0
-    @dealer_money = 0
+    @player_bet = 0
+    @dealer_bet = 0
   end
 
-  def refund_to_player(player_bank_account, player_money)
-    player_bank_account.receive(player_money)
-    @player_money = 0
+  def refund_to_player(player_bank_account, player_bet)
+    player_bank_account.receive(player_bet)
+    @player_bet = 0
   end
 
-  def refund_to_dealer(dealer_bank_account, dealer_money)
-    dealer_bank_account.receive(dealer_money)
-    @dealer_money = 0
+  def refund_to_dealer(dealer_bank_account, dealer_bet)
+    dealer_bank_account.receive(dealer_bet)
+    @dealer_bet = 0
   end
 end

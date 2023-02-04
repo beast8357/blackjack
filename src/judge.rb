@@ -7,7 +7,7 @@ class Judge
     elsif dealer_score <= 21 && (dealer_score > player_score || player_score > 21)
       dealer
     elsif player_score == dealer_score || (player_score > 21 && dealer_score > 21)
-      false
+      nil
     end
   end
 end

@@ -7,10 +7,10 @@ class BankAccount
 
   def deduct(amount)
     @money -= amount if money >= 10
+    amount
   end
 
   def receive(amount)
-    # binding.irb
     @money += amount
   end
 end
