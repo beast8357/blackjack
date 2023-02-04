@@ -15,20 +15,17 @@ class GameBankAccount
   end
 
   def transfer(bank_account, amount)
-    # binding.irb
     bank_account.receive(amount)
     @player_money = 0
     @dealer_money = 0
   end
 
-  def give_money_back_to_player(player_bank_account, player_money)
-    # binding.irb
+  def refund_to_player(player_bank_account, player_money)
     player_bank_account.receive(player_money)
     @player_money = 0
   end
 
-  def give_money_back_to_dealer(dealer_bank_account, dealer_money)
-    # binding.irb
+  def refund_to_dealer(dealer_bank_account, dealer_money)
     dealer_bank_account.receive(dealer_money)
     @dealer_money = 0
   end
