@@ -1,14 +1,3 @@
-require_relative 'player'
-require_relative 'dealer'
-require_relative 'game_bank_account'
-require_relative 'deck'
-require_relative 'bets'
-require_relative 'player_stats'
-require_relative 'dealer_stats'
-require_relative 'action_options'
-require_relative 'finalizer'
-require_relative 'question'
-
 class Game
   attr_reader :deck, :flag, :player, :dealer, :bank_account, :bet_amount
 
@@ -37,61 +26,40 @@ class Game
       if flag == true || (player.cards.count == 3 && dealer.cards.count == 3)
         break
       else
-        continue
+        step!
       end
     end
     Finalizer.finalize(player, dealer, bank_account)
     start! if play_again?
   end
 
-  def continue
+  def step!
     ActionOptions.display
     print "Your input: "
     option = ActionOptions.options[gets.chomp.to_i - 1]
-    puts "You decided to #{option[:name]}"
     self.send(option[:action])
   end
 
   def skip_turn
-    dealer_turn
+    DealerTurn.decide(dealer, deck)
   end
 
-  def take_extra_card
+  def extra_card
     player.take_extra_card(deck)
-    dealer_turn
+    DealerTurn.decide(dealer, deck)
   end
 
   def flip_cards
     @flag = true
   end
 
-  def dealer_turn
-    if dealer.score >= 17
-      puts "Dealer has skipped his turn"
-    else
-      puts "Dealer has takem an extra card"
-      dealer.take_extra_card(deck)
-    end
-  end
-
   def play_again?
-    Question.ask
-    option = gets.chomp.to_i
+    option = Question.ask
     if option == 1 && player.bank_account.money >= 10 && dealer.bank_account.money >= 10
       true
     else
-      last_message
+      LastMessage.display(player, dealer)
       false
-    end
-  end
-
-  def last_message
-    if player.bank_account.money.zero?
-      puts "You've got no money to play :("
-    elsif dealer.bank_account.money.zero?
-      puts "Dealer's got no money to play :("
-    else
-      puts "See you later ;)"
     end
   end
 end
