@@ -1,5 +1,5 @@
-require_relative 'entities/greeter'
 require_relative 'entities/game'
+require_relative 'entities/greeter'
 require_relative 'entities/player'
 require_relative 'entities/dealer'
 require_relative 'entities/game_bank_account'

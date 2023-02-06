@@ -6,7 +6,6 @@ class Dealer
 
   def initialize
     @bank_account = BankAccount.new
-    @cards = []
     @score = 0
   end
 
@@ -15,7 +14,7 @@ class Dealer
   end
 
   def take_starting_cards(deck)
-    cards.clear
+    @cards = []
     cards << deck.pop until cards.count == 2
     @score = ScoreCounter.count(cards)
   end
