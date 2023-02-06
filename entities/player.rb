@@ -6,9 +6,8 @@ class Player
   attr_accessor :name
 
   def initialize
-    @name = ''
+    @name = 'unknown'
     @bank_account = BankAccount.new
-    @cards = []
     @score = 0
   end
 
@@ -17,7 +16,7 @@ class Player
   end
 
   def take_starting_cards(deck)
-    cards.clear
+    @cards = []
     cards << deck.pop until cards.count == 2
     @score = ScoreCounter.count(cards)
   end

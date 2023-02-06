@@ -16,12 +16,12 @@ class Game
     Bets.operate(player, dealer, bank_account, bet_amount)
     PlayerStats.show(player)
     DealerStats.show_encrypted(dealer)
-    cycle
+    initiate_cycle
   end
 
   private
 
-  def cycle
+  def initiate_cycle
     loop do
       if flag == true || (player.cards.count == 3 && dealer.cards.count == 3)
         break
