@@ -1,12 +1,17 @@
+# frozen_string_literal: true
+
 class BankAccount
+  INITIAL_BALANCE = 100
+  MINIMAL_BALANCE = 10
+
   attr_reader :money
 
   def initialize
-    @money = 100
+    @money = INITIAL_BALANCE
   end
 
   def deduct(amount)
-    @money -= amount if money >= 10
+    @money -= amount if money >= MINIMAL_BALANCE
     amount
   end
 

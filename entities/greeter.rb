@@ -1,6 +1,10 @@
+# frozen_string_literal: true
+
 class Greeter
-  def self.greet
-    puts "Welcome to Black Jack!"
-    print "To start the game, enter your name: "
+  class << self
+    def greet
+      puts 'Welcome to Black Jack!'
+      print 'To start the game, enter your name: '
+    end
   end
 end

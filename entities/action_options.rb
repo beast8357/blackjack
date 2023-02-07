@@ -1,13 +1,17 @@
-class ActionOptions
-  def self.options
-    [
-      { name: 'Skip turn', action: :skip_turn },
-      { name: 'Take an extra card', action: :extra_card },
-      { name: 'Flip cards', action: :flip_cards }
-    ]
-  end
+# frozen_string_literal: true
 
-  def self.display
-    options.each.with_index(1) { |option, index| puts "#{index}. #{option[:name]}" }
+class ActionOptions
+  class << self
+    def options
+      [
+        { name: 'Skip turn', action: :skip_turn },
+        { name: 'Take an extra card', action: :extra_card },
+        { name: 'Flip cards', action: :flip_cards }
+      ].freeze
+    end
+
+    def display
+      options.each.with_index(1) { |option, index| puts "#{index}. #{option[:name]}" }
+    end
   end
 end
