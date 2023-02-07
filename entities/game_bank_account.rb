@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GameBankAccount
   attr_reader :player_bet, :dealer_bet
 

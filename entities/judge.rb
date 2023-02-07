@@ -1,13 +1,28 @@
+# frozen_string_literal: true
+
 class Judge
-  def self.judge(player, dealer)
-    player_score = player.score
-    dealer_score = dealer.score
-    if player_score <= 21 && (player_score > dealer_score || dealer_score > 21)
-      player
-    elsif dealer_score <= 21 && (dealer_score > player_score || player_score > 21)
-      dealer
-    elsif player_score == dealer_score || (player_score > 21 && dealer_score > 21)
-      nil
+  MAX_WIN_SCORE = 21
+
+  class << self
+    def judge(player, dealer)
+      player_score = player.score
+      dealer_score = dealer.score
+      determine(player_score, dealer_score)
+    end
+
+    private
+
+    def determine(player_score, dealer_score)
+      if player_score <= MAX_WIN_SCORE && (player_score > dealer_score ||
+                                           dealer_score > MAX_WIN_SCORE)
+        player
+      elsif dealer_score <= MAX_WIN_SCORE && (dealer_score > player_score ||
+                                              player_score > MAX_WIN_SCORE)
+        dealer
+      elsif player_score == dealer_score || (player_score > MAX_WIN_SCORE &&
+                                             dealer_score > MAX_WIN_SCORE)
+        nil
+      end
     end
   end
 end

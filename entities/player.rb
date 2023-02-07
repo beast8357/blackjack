@@ -1,7 +1,9 @@
-require_relative 'bank_account'
-require_relative 'score_counter'
+# frozen_string_literal: true
 
-class Player 
+class Player
+  INITIAL_CARDS_NUMBER = 2
+  MAX_CARDS_NUMBER = 3
+
   attr_reader :bank_account, :cards, :score
   attr_accessor :name
 
@@ -17,14 +19,14 @@ class Player
 
   def take_starting_cards(deck)
     @cards = []
-    cards << deck.pop until cards.count == 2
-    @score = ScoreCounter.count(cards)
+    cards << deck.pop until cards.count == INITIAL_CARDS_NUMBER
+    @score = ScoreCounter.new(cards).count
   end
 
   def take_extra_card(deck)
-    if cards.count == 2
-      cards << deck.pop until cards.count == 3
+    if cards.count == INITIAL_CARDS_NUMBER
+      cards << deck.pop until cards.count == MAX_CARDS_NUMBER
     end
-    @score = ScoreCounter.count(cards)
+    @score = ScoreCounter.new(cards).count
   end
 end
