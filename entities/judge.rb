@@ -7,12 +7,12 @@ class Judge
     def judge(player, dealer)
       player_score = player.score
       dealer_score = dealer.score
-      determine(player_score, dealer_score)
+      determine(player, dealer, player_score, dealer_score)
     end
 
     private
 
-    def determine(player_score, dealer_score)
+    def determine(player, dealer, player_score, dealer_score)
       if player_score <= MAX_WIN_SCORE && (player_score > dealer_score ||
                                            dealer_score > MAX_WIN_SCORE)
         player
